@@ -30,6 +30,7 @@ describe('Cache', () => {
     describe(name, () => {
       it('loadFromCache', async () => {
         const key = 'key0'
+        const fullKey = cache.buildKey(key)
         await cache.clear(key)
         expect(await cache.loadFromCache(key)).toEqual(null)
         await cache.saveToCache(key, 'value', 3000)
@@ -42,12 +43,10 @@ describe('Cache', () => {
         expect(await cache.loadFromCache(key)).toEqual('value')
         await cache.clear(key)
         expect(await cache.loadFromCache(key)).toEqual(null)
-        if (name === 'memory') {
-          await cache.saveToCache(key, 'value')
-          expect(await cache.loadFromCache(key)).toEqual('value')
-          await cache.clear()
-          expect(await cache.loadFromCache(key)).toEqual(null)
-        }
+        await cache.saveToCache(fullKey, 'value')
+        expect(await cache.loadFromCache(fullKey)).toEqual('value')
+        await cache.clear()
+        expect(await cache.loadFromCache(fullKey)).toEqual(null)
       })
     })
   })
