@@ -16,16 +16,16 @@ export default class CacheBase {
     )
   }
 
-  async getWithFullKey (fullKey, fn, expire1, expire2, expire3) {
+  async getWithFullKey (fullKey, fn, ...expires) {
     let ret = await this.loadFromCache(fullKey)
     if (!ret) {
       if (this.parent) {
-        ret = await this.parent.getWithFullKey(fullKey, fn, expire2, expire3)
+        ret = await this.parent.getWithFullKey(fullKey, fn, ...expires.splice(1))
       } else if (fn) {
         ret = await fn(this)
       }
       if (ret) {
-        this.saveToCache(fullKey, ret, expire1 || this.expire)
+        this.saveToCache(fullKey, ret, expires[0] || this.expire)
       }
     }
     return ret
