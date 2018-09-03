@@ -40,6 +40,6 @@ export default class CacheBase {
   }
 
   async clear () {
-    throw new Error('require func saveToCache')
+    throw new Error('require func clear')
   }
 }
