@@ -17,7 +17,7 @@ export default class CacheMemory extends CacheBase {
     if (key) {
       this.client.del(key)
     } else {
-      this.reset()
+      this.client.reset()
     }
   }
 }

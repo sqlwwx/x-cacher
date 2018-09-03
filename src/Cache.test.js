@@ -27,6 +27,12 @@ describe('Cache', () => {
         expect(await cache.loadFromCache(key)).toEqual('value')
         await cache.clear(key)
         expect(await cache.loadFromCache(key)).toEqual(null)
+        if (name === 'memory') {
+          await cache.saveToCache(key, 'value')
+          expect(await cache.loadFromCache(key)).toEqual('value')
+          await cache.clear()
+          expect(await cache.loadFromCache(key)).toEqual(null)
+        }
       })
     })
   })
