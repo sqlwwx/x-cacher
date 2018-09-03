@@ -1,0 +1,17 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      },
+      "useBuiltIns": true
+    }]
+  ],
+  "plugins": [
+    ["import", { "libraryName": "lodash", "libraryDirectory": "", "camel2DashComponentName": false }],
+    "transform-export-extensions",
+    "syntax-object-rest-spread",
+    "transform-decorators-legacy",
+    "transform-class-properties"
+  ]
+}

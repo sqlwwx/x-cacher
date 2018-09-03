@@ -1,0 +1,40 @@
+{
+  "name": "x-cacher",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d . --copy-files",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sqlwwx <wwx_2012@live.com> (http://wiki.lab.wuweixing.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sqlwwx/x-cacher/issues"
+  },
+  "homepage": "https://github.com/sqlwwx/x-cacher#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^9.0.0",
+    "babel-plugin-import": "^1.8.0",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.0.0",
+    "eslint-config-standard": "^12.0.0-alpha.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.0",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "getmac": "^1.4.5",
+    "jest": "^23.2.0",
+    "pure-func": "^1.0.15"
+  },
+  "peerDependencies": {
+    "redis": "^2.8.0"
+  }
+}
