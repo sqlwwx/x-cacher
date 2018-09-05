@@ -15,7 +15,9 @@ export default class CacheRedis extends CacheBase {
   async loadFromCache (fullKey) {
     let value = await this.getAsync(fullKey)
     try {
-      value = JSON.parse(value)
+      if (value) {
+        value = JSON.parse(value)
+      }
     } catch (e) {
     }
     return value

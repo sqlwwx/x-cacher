@@ -9,18 +9,12 @@ export default class CacheBase {
     return this.prefix + ':' + key
   }
 
-  async get (key, fn, expire) {
-    return this.getWithFullKey(
-      this.buildKey(key),
-      fn, expire || this.expire
-    )
-  }
-
-  async getWithFullKey (fullKey, fn, ...expires) {
+  async get (key, fn, ...expires) {
+    const fullKey = this.buildKey(key)
     let ret = await this.loadFromCache(fullKey)
     if (!ret) {
       if (this.parent) {
-        ret = await this.parent.getWithFullKey(fullKey, fn, ...expires.splice(1))
+        ret = await this.parent.get(key, fn, ...expires.splice(1))
       } else if (fn) {
         ret = await fn(this)
       }

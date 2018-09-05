@@ -23,7 +23,7 @@ export default class Cacher {
       }
     }
   }
-  async loadFromCache (key, fn, expire) {
+  async get (key, fn, expire) {
     return this.cache.get(key, fn, expire)
   }
 }
