@@ -1,11 +1,6 @@
-import Cacher from './Cacher'
-import CacheMemory from './CacheMemory'
-import CacheRedis from './CacheRedis'
+import Cacher from './index'
 import { sleep } from 'pure-func/promise'
 import redis from 'redis'
-
-Cacher.regCache(CacheMemory)
-Cacher.regCache(CacheRedis)
 
 jest.setTimeout(1000 * 60)
 
