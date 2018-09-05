@@ -6,3 +6,4 @@ makefile
 yarn.lock
 .babelrc
 .travis.yml
+jest.config.js
