@@ -14,6 +14,13 @@ export default class Cacher {
   static regCache (Cache, type) {
     this.Caches[type || Cache.type] = Cache
   }
+  clear (key) {
+    this.cache.clear(key)
+    if (this.cache.parent) {
+      this.cache.parent.clear(key)
+      this.cache.parent.parent && this.cache.parent.parent.clear(key)
+    }
+  }
   async loadFromCache (key, fn, expire) {
     return this.cache.get(key, fn, expire)
   }

@@ -20,8 +20,7 @@ describe('Cacher', () => {
     const key = 'key'
     const cacher = new Cacher([{ type: 'memory', expire: 5000 }, { type: 'redis', expire: 10000, client: redis.createClient() }])
     const fullKey = cacher.cache.buildKey(key)
-    await cacher.cache.clear(key)
-    await cacher.cache.parent.clear(key)
+    await cacher.clear(key)
     expect(await cacher.loadFromCache(key)).toEqual(null)
     expect(await cacher.loadFromCache(key, () => 2)).toEqual(2)
     await sleep(1000)
