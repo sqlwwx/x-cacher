@@ -15,7 +15,7 @@ export default class CacheMemory extends CacheBase {
   }
   async clear (key) {
     if (key) {
-      this.client.del(key)
+      this.client.del(this.buildKey(key))
     } else {
       this.client.reset()
     }

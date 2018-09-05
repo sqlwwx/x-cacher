@@ -26,7 +26,7 @@ describe('Cacher', () => {
     await sleep(1000)
     expect(await cacher.loadFromCache(key)).toEqual(2)
     expect(await cacher.cache.loadFromCache(fullKey)).toEqual(2)
-    await cacher.cache.clear(fullKey)
+    await cacher.cache.clear(key)
     expect(await cacher.cache.loadFromCache(fullKey)).toEqual(null)
     expect(await cacher.cache.get(key)).toEqual(2)
     expect(await cacher.cache.loadFromCache(fullKey)).toEqual(2)

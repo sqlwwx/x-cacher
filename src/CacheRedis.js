@@ -23,8 +23,8 @@ export default class CacheRedis extends CacheBase {
   async saveToCache (fullKey, data, expire) {
     return this.setAsync(fullKey, JSON.stringify(data), 'EX', (expire || this.expire) / 1000)
   }
-  async clear (fullKey) {
-    const keys = await this.keysAsync(fullKey || (this.prefix + '*'))
+  async clear (key) {
+    const keys = await this.keysAsync(this.prefix + (key || '') + '*')
     return Promise.all(keys.map(key => {
       return this.delAsync(key)
     }))
