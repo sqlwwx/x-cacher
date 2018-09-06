@@ -11,7 +11,7 @@ services:
 install:
   - make install
 script:
-  - jsinspect src
+  - jsinspect -m 3 src
   - make test
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js

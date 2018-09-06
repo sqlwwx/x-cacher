@@ -14,7 +14,7 @@ export default class CacheBase {
     let ret = await this.loadFromCache(fullKey)
     if (!ret) {
       if (this.parent) {
-        ret = await this.parent.get(key, fn, ...expires.splice(1))
+        ret = await this.parent.getAndSave(key, fn, ...expires.splice(1))
       } else if (fn) {
         ret = await fn(this)
       }
