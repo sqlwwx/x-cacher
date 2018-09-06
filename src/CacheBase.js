@@ -9,6 +9,22 @@ export default class CacheBase {
     return this.prefix + ':' + key
   }
 
+  async getAndSave (key, fn, ...expires) {
+    const fullKey = this.buildKey(key)
+    let ret = await this.loadFromCache(fullKey)
+    if (!ret) {
+      if (this.parent) {
+        ret = await this.parent.get(key, fn, ...expires.splice(1))
+      } else if (fn) {
+        ret = await fn(this)
+      }
+    }
+    if (ret) {
+      await this.saveToCache(fullKey, ret, expires[0] || this.expire)
+    }
+    return ret
+  }
+
   async get (key, fn, ...expires) {
     const fullKey = this.buildKey(key)
     let ret = await this.loadFromCache(fullKey)
@@ -19,7 +35,7 @@ export default class CacheBase {
         ret = await fn(this)
       }
       if (ret) {
-        this.saveToCache(fullKey, ret, expires[0] || this.expire)
+        await this.saveToCache(fullKey, ret, expires[0] || this.expire)
       }
     }
     return ret

@@ -23,7 +23,10 @@ export default class Cacher {
       }
     }
   }
-  async get (key, fn, expire) {
-    return this.cache.get(key, fn, expire)
+  async getAndSave (key, fn, ...expires) {
+    return this.cache.getAndSave(key, fn, ...expires)
+  }
+  async get (key, fn, ...expires) {
+    return this.cache.get(key, fn, ...expires)
   }
 }
