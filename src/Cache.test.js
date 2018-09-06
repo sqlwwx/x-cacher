@@ -37,7 +37,7 @@ describe('Cache', () => {
         expect(await cache.loadFromCache(fullKey)).toEqual('value')
         await sleep(1000)
         expect(await cache.loadFromCache(fullKey)).toEqual('value')
-        await sleep(2000)
+        await sleep(2500)
         expect(await cache.loadFromCache(fullKey)).toEqual(null)
         await cache.saveToCache(fullKey, 'value')
         expect(await cache.loadFromCache(fullKey)).toEqual('value')
