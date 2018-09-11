@@ -8,3 +8,4 @@ Cacher.regCache(CacheMemory)
 Cacher.regCache(CacheRedis)
 
 export default Cacher
+export cacherDec from './decorators/cacher'
