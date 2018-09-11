@@ -1,23 +1,23 @@
 import CacheBase from './CacheBase'
-import { Cache } from 'memory-cache'
+import LRU from 'lru-cache'
 
-export default class CacheMemoryLRU extends CacheBase {
+export default class CacheMemory extends CacheBase {
   constructor (options = {}) {
     super(options)
-    this.client = new Cache()
+    this.client = LRU(options.client || {})
   }
-  static type = 'memory';
+  static type = 'memory-lru';
   async loadFromCache (fullKey) {
     return this.client.get(fullKey) || null
   }
   async saveToCache (fullKey, data, expire) {
-    return this.client.put(fullKey, data, expire)
+    return this.client.set(fullKey, data, expire)
   }
   async clear (key) {
     if (key) {
       this.client.del(this.buildKey(key))
     } else {
-      this.client.clear()
+      this.client.reset()
     }
   }
 }

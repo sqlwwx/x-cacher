@@ -1,4 +1,5 @@
 import CacheMemory from './CacheMemory'
+import CacheMemoryLRU from './CacheMemoryLRU'
 import CacheBase from './CacheBase'
 import CacheRedis from './CacheRedis'
 import { sleep } from 'pure-func/promise'
@@ -7,6 +8,7 @@ import redis from 'redis'
 const client = redis.createClient()
 const caches = {
   redis: new CacheRedis({ client }),
+  'memory-lru': new CacheMemoryLRU(),
   memory: new CacheMemory()
 }
 
