@@ -7,11 +7,11 @@ class Person {
   constructor (name) {
     this.name = name
   }
-  @cacherDes(cacher, ({ name: personName }, methodName) => personName + ':' + methodName)
-  async eat () {
+  @cacherDes(cacher, ({ name: personName }, methodName, food) => 'person:' + personName + ':' + methodName + ':' + food)
+  async eat (food, food2) {
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(this.name + ' eat: '+ Math.random())
+        resolve(this.name + ' eat: '+ (food || Math.random()))
       }, 2000)
     })
   }
@@ -33,5 +33,13 @@ describe('cacher', () => {
     expect(ret2).toMatch(/^a eat: /)
     expect(ret).toEqual(ret2)
     expect(Date.now() - startAt).toBeLessThan(1000)
+    startAt = Date.now()
+    ret2 = await personA.eat('apple')
+    expect(Date.now() - startAt).toBeGreaterThanOrEqual(2000)
+    expect(ret2).toEqual('a eat: apple')
+    startAt = Date.now()
+    ret2 = await personA.eat('apple')
+    expect(Date.now() - startAt).toBeLessThan(1000)
+    expect(ret2).toEqual('a eat: apple')
   })
 })
