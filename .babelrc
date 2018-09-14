@@ -1,17 +1,22 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "node": "current"
-      },
-      "useBuiltIns": true
-    }]
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        },
+        "useBuiltIns": "entry"
+      }
+    ]
   ],
   "plugins": [
-    ["import", { "libraryName": "lodash", "libraryDirectory": "", "camel2DashComponentName": false }],
-    "transform-export-extensions",
-    "syntax-object-rest-spread",
-    "transform-decorators-legacy",
-    "transform-class-properties"
+    "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-syntax-object-rest-spread",
+    [
+      "@babel/plugin-proposal-decorators", { "legacy": true }
+    ],
+    "@babel/plugin-proposal-class-properties"
   ]
 }
