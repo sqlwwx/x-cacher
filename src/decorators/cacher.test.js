@@ -7,11 +7,19 @@ class Person {
   constructor (name) {
     this.name = name
   }
-  @cacherDes(cacher, ({ name: personName }, methodName, food) => 'person:' + personName + ':' + methodName + ':' + food)
+  @cacherDes(cacher)
+  async play (sport = 'pingpong') {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(this.name + ' play: ' + sport)
+      }, 2000)
+    })
+  }
+  @cacherDes(cacher, (person, methodName, food) => 'person:' + person.name + ':eat:' + food)
   async eat (food, food2) {
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(this.name + ' eat: '+ (food || Math.random()))
+        resolve(this.name + ' eat: ' + (food || Math.random()))
       }, 2000)
     })
   }
@@ -41,5 +49,24 @@ describe('cacher', () => {
     ret2 = await personA.eat('apple')
     expect(Date.now() - startAt).toBeLessThan(1000)
     expect(ret2).toEqual('a eat: apple')
+  })
+  it('play', async () => {
+    let startAt = Date.now()
+    let ret = await personA.play()
+    expect(ret).toMatch('a play: pingpong')
+    expect(Date.now() - startAt).toBeGreaterThanOrEqual(2000)
+    startAt = Date.now()
+    ret = await personA.play()
+    expect(ret).toMatch('a play: pingpong')
+    expect(ret).toEqual(ret)
+    expect(Date.now() - startAt).toBeLessThan(1000)
+    startAt = Date.now()
+    ret = await personA.play('basketball')
+    expect(Date.now() - startAt).toBeGreaterThanOrEqual(2000)
+    expect(ret).toEqual('a play: basketball')
+    startAt = Date.now()
+    ret = await personA.play('basketball')
+    expect(Date.now() - startAt).toBeLessThan(1000)
+    expect(ret).toEqual('a play: basketball')
   })
 })

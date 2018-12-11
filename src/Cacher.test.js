@@ -8,7 +8,7 @@ jest.setTimeout(1000 * 60)
 describe('Cacher', () => {
   it('1 level', async () => {
     let cacher = new Cacher([{ type: 'memory' }])
-    await cacher.cache.clear('key')
+    await cacher.clear('key')
     expect(await cacher.get('key')).toEqual(null)
     expect(await cacher.get('key', () => 1, 3000)).toEqual(1)
     await sleep(1000)

@@ -1,11 +1,15 @@
 import CacheBase from './CacheBase'
 import { promisify } from 'util'
+import Redis from 'ioredis'
 
 export default class CacheRedis extends CacheBase {
   constructor (options = {}) {
     super(options)
     this.prefix = options.prefix || 'CacheRedis'
     this.client = options.client
+    if (!this.client) {
+      this.client = new Redis()
+    }
     this.getAsync = promisify(this.client.get).bind(this.client)
     this.setAsync = promisify(this.client.set).bind(this.client)
     this.keysAsync = promisify(this.client.keys).bind(this.client)
