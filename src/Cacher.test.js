@@ -1,6 +1,6 @@
 import Cacher from './index'
 import { sleep } from 'pure-func/promise'
-import redis from 'redis'
+import Redis from 'ioredis'
 
 jest.setTimeout(1000 * 60)
 
@@ -15,7 +15,7 @@ describe('Cacher', () => {
     expect(await cacher.get('key')).toEqual(1)
     await sleep(3000)
     expect(await cacher.get('key')).toEqual(null)
-    cacher = new Cacher([{ type: 'redis', client: redis.createClient() }])
+    cacher = new Cacher([{ type: 'redis', client: new Redis() }])
     await cacher.cache.clear('key')
     expect(await cacher.get('key')).toEqual(null)
     expect(await cacher.get('key', () => 1, 3000)).toEqual(1)
@@ -26,7 +26,7 @@ describe('Cacher', () => {
   })
   it('2 level', async () => {
     const key = 'key'
-    const cacher = new Cacher([{ type: 'memory', expire: 5000 }, { type: 'redis', expire: 10000, client: redis.createClient() }])
+    const cacher = new Cacher([{ type: 'memory', expire: 5000 }, { type: 'redis', expire: 10000, client: new Redis() }])
     const fullKey = cacher.cache.buildKey(key)
     await cacher.clear(key)
     expect(await cacher.get(key)).toEqual(null)
@@ -51,9 +51,9 @@ describe('Cacher', () => {
     const cacher = new Cacher([{
       type: 'memory', expire: 2000
     }, {
-      type: 'redis', expire: 4000, client: redis.createClient(), prefix: 'level2cache'
+      type: 'redis', expire: 4000, client: new Redis(), prefix: 'level2cache'
     }, {
-      type: 'redis', expire: 6000, client: redis.createClient(), prefix: 'level3cache'
+      type: 'redis', expire: 6000, client: new Redis(), prefix: 'level3cache'
     }])
     const fullKey0 = cacher.cache.buildKey(key)
     const fullKey1 = cacher.cache.parent.buildKey(key)
@@ -84,7 +84,12 @@ describe('Cacher', () => {
   })
   it('getAndSave', async () => {
     const key = 'key1'
-    const cache = new Cacher([{ type: 'redis', client: redis.createClient(), prefix: 'testGetAndSave', expire: 2000 }])
+    const cache = new Cacher([{
+      type: 'redis',
+      client: new Redis(),
+      prefix: 'testGetAndSave',
+      expire: 2000
+    }])
     expect(await cache.get(key, () => 1, 1000)).toEqual(1)
     await sleep(1500)
     expect(await cache.get(key)).toEqual(null)

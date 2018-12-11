@@ -7,7 +7,7 @@ DIR ?= src
 install:
 	yarn install
 	yarn global add jsinspect
-	yarn add lru-cache redis --peer
+	yarn add lru-cache ioredis --peer
 
 build:
 	$(BABEL) src -d . --copy-files
