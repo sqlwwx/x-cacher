@@ -6,7 +6,7 @@ export default class CacheBase {
   }
 
   buildKey (key) {
-    return this.prefix + ':' + key
+    return `${this.prefix}:${key}`
   }
 
   async doGet (alwaysSave, key, fn, expires) {
@@ -34,17 +34,5 @@ export default class CacheBase {
 
   async get (key, fn, ...expires) {
     return this.doGet(false, key, fn, expires)
-  }
-
-  async loadFromCache (fullKey) {
-    throw new Error('require func loadFromCache')
-  }
-
-  async saveToCache (fullKey, data, expire) {
-    throw new Error('require func saveToCache')
-  }
-
-  async clear () {
-    throw new Error('require func clear')
   }
 }

@@ -1,9 +1,9 @@
+import { sleep } from 'pure-func/promise'
+import Redis from 'ioredis'
 import CacheMemory from './CacheMemory'
 import CacheMemoryLRU from './CacheMemoryLRU'
 import CacheBase from './CacheBase'
 import CacheRedis from './CacheRedis'
-import { sleep } from 'pure-func/promise'
-import Redis from 'ioredis'
 
 const client = new Redis()
 const caches = {
@@ -20,12 +20,6 @@ describe('Cache', () => {
       const cacheBase1 = new CacheBase()
       expect(cacheBase0.buildKey('key')).toEqual('test:key')
       expect(cacheBase1.buildKey('key')).toEqual('CacheBase:key')
-    })
-    it('require func', () => {
-      const cacheBase = new CacheBase()
-      expect(cacheBase.loadFromCache()).rejects.toHaveProperty('message', 'require func loadFromCache')
-      expect(cacheBase.saveToCache()).rejects.toHaveProperty('message', 'require func saveToCache')
-      expect(cacheBase.clear()).rejects.toHaveProperty('message', 'require func clear')
     })
   })
   Object.entries(caches).forEach(([name, cache]) => {
@@ -56,7 +50,16 @@ describe('Cache', () => {
   })
   it('getAndSave', async () => {
     const key = 'key1'
-    const cache = new CacheRedis({ client, prefix: 'testGetAndSave', expire: 2000, parent: new CacheRedis({ client, prefix: 'testGetAndSave1', expire: 2000 }) })
+    const cache = new CacheRedis({
+      client,
+      prefix: 'testGetAndSave',
+      expire: 2000,
+      parent: new CacheRedis({
+        client,
+        prefix: 'testGetAndSave1',
+        expire: 2000
+      })
+    })
     expect(await cache.get(key, () => 1, 1000, 1000)).toEqual(1)
     await sleep(1500)
     expect(await cache.get(key)).toEqual(null)

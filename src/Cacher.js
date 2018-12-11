@@ -6,14 +6,19 @@ export default class Cacher {
       assert(cacheOptions.type, `cache.type should exists`)
       const Cache = Cacher.Caches[cacheOptions.type]
       assert(Cache, `Cache[${cacheOptions.type}] should exists`)
-      cacheOptions.parent = cache
-      return new Cache(cacheOptions)
+      return new Cache({
+        ...cacheOptions,
+        parent: cache
+      })
     }, null)
   }
+
   static Caches = Object.create(null)
+
   static regCache (Cache, type) {
     this.Caches[type || Cache.type] = Cache
   }
+
   async clear (key) {
     await this.cache.clear(key)
     if (this.cache.parent) {
@@ -23,9 +28,11 @@ export default class Cacher {
       }
     }
   }
+
   async getAndSave (key, fn, ...expires) {
     return this.cache.getAndSave(key, fn, ...expires)
   }
+
   async get (key, fn, ...expires) {
     return this.cache.get(key, fn, ...expires)
   }

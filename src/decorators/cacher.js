@@ -1,14 +1,15 @@
 export default (cacher, cacheKeyFn) => {
   return (targer, methodName, descriptor) => {
-    const oldValue = descriptor.value
-    descriptor.value = async function () {
+    const { value: oldFunc } = descriptor
+    async function newFunc (...args) {
       const cacheKey = cacheKeyFn
-        ? cacheKeyFn(this, methodName, ...arguments)
-        : methodName + '_' + JSON.stringify(arguments)
-      return cacher.get(cacheKey, () => {
-        return oldValue.apply(this, arguments)
-      })
+        ? cacheKeyFn(this, methodName, ...args)
+        : `${methodName}_${JSON.stringify(args)}`
+      return cacher.get(cacheKey, () => oldFunc.call(this, ...args))
     }
-    return descriptor
+    return {
+      ...descriptor,
+      value: newFunc
+    }
   }
 }

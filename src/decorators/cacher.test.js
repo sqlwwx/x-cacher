@@ -7,19 +7,21 @@ class Person {
   constructor (name) {
     this.name = name
   }
+
   @cacherDes(cacher)
   async play (sport = 'pingpong') {
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(this.name + ' play: ' + sport)
+        resolve(`${this.name} play: ${sport}`)
       }, 2000)
     })
   }
-  @cacherDes(cacher, (person, methodName, food) => 'person:' + person.name + ':eat:' + food)
-  async eat (food, food2) {
+
+  @cacherDes(cacher, (person, methodName, food) => `person:${person.name}:eat:${food}`)
+  async eat (food) {
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(this.name + ' eat: ' + (food || Math.random()))
+        resolve(`${this.name} eat: ${food || Math.random()}`)
       }, 2000)
     })
   }
@@ -33,7 +35,7 @@ jest.setTimeout(1000 * 60)
 describe('cacher', () => {
   it('eat', async () => {
     let startAt = Date.now()
-    let ret = await personA.eat()
+    const ret = await personA.eat()
     expect(ret).toMatch(/^a eat: /)
     expect(Date.now() - startAt).toBeGreaterThanOrEqual(2000)
     startAt = Date.now()

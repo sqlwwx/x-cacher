@@ -1,6 +1,6 @@
-import Cacher from './index'
 import { sleep } from 'pure-func/promise'
 import Redis from 'ioredis'
+import Cacher from './index'
 
 jest.setTimeout(1000 * 60)
 
