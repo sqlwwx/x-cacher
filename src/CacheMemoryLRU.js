@@ -4,7 +4,7 @@ import LRU from 'lru-cache'
 export default class CacheMemory extends CacheBase {
   constructor (options = {}) {
     super(options)
-    this.client = LRU(options.client || {})
+    this.client = new LRU(options.client || {})
   }
   static type = 'memory-lru';
   async loadFromCache (fullKey) {
