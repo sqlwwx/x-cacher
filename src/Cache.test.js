@@ -3,9 +3,9 @@ import CacheMemoryLRU from './CacheMemoryLRU'
 import CacheBase from './CacheBase'
 import CacheRedis from './CacheRedis'
 import { sleep } from 'pure-func/promise'
-import redis from 'redis'
+import Redis from 'ioredis'
 
-const client = redis.createClient()
+const client = new Redis()
 const caches = {
   redis: new CacheRedis({ client }),
   'memory-lru': new CacheMemoryLRU(),
