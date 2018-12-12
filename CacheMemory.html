@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CacheBase</title>
+    <title>JSDoc: Class: CacheMemory</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CacheBase</h1>
+    <h1 class="page-title">Class: CacheMemory</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>CacheBase<span class="signature">(options)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>CacheMemory<span class="signature">(options)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">CacheBase</div>
+            <div class="class-description">CacheMemory</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="CacheBase"><span class="type-signature"></span>new CacheBase<span class="signature">(options)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CacheMemory"><span class="type-signature"></span>new CacheMemory<span class="signature">(options)</span><span class="type-signature"></span></h4>
     
 
     
@@ -154,7 +154,7 @@
             
                 <td class="default">
                 
-                    CacheBase
+                    CacheMemory
                 
                 </td>
             
@@ -263,7 +263,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CacheBase.js.html">CacheBase.js</a>, <a href="CacheBase.js.html#line6">line 6</a>
+        <a href="CacheMemory.js.html">CacheMemory.js</a>, <a href="CacheMemory.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -293,6 +293,17 @@
 
     
     </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="CacheBase.html">CacheBase</a></li>
+    </ul>
+
 
     
 
@@ -396,6 +407,11 @@
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CacheBase.html#buildKey">CacheBase#buildKey</a>
+    </li></ul></dd>
+    
 
     
 
@@ -474,7 +490,7 @@
     
 
     
-    <h4 class="name" id="clear"><span class="type-signature">(abstract) </span>clear<span class="signature">(key)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="clear"><span class="type-signature"></span>clear<span class="signature">(key)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -554,6 +570,11 @@
 
     
 
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="CacheBase.html#clear">CacheBase#clear</a>
+    </li></ul></dd>
     
 
     
@@ -779,6 +800,11 @@
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CacheBase.html#get">CacheBase#get</a>
+    </li></ul></dd>
     
 
     
@@ -1011,6 +1037,11 @@
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CacheBase.html#getAndSave">CacheBase#getAndSave</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1089,7 +1120,7 @@
     
 
     
-    <h4 class="name" id="loadFromCache"><span class="type-signature">(abstract) </span>loadFromCache<span class="signature">(fullKey)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="loadFromCache"><span class="type-signature"></span>loadFromCache<span class="signature">(fullKey)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -1170,6 +1201,11 @@
     
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="CacheBase.html#loadFromCache">CacheBase#loadFromCache</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1246,7 +1282,7 @@
     
 
     
-    <h4 class="name" id="saveToCache"><span class="type-signature">(abstract) </span>saveToCache<span class="signature">(fullKey, data, expire)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="saveToCache"><span class="type-signature"></span>saveToCache<span class="signature">(fullKey, data, expire)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
     
@@ -1372,6 +1408,11 @@
 
     
 
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="CacheBase.html#saveToCache">CacheBase#saveToCache</a>
+    </li></ul></dd>
     
 
     
