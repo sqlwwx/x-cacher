@@ -1,6 +1,7 @@
 LINT = $(PWD)/node_modules/.bin/eslint
 JEST = $(PWD)/node_modules/.bin/jest
 BABEL = $(PWD)/node_modules/.bin/babel
+JSDOC = $(PWD)/node_modules/.bin/jsdoc
 
 DIR ?= src
 
@@ -27,4 +28,16 @@ dev:
 publish: build
 	npm publish
 
-.PHONY: test lint dev build watch publish install
+push-doc:
+	$(JSDOC) src README.md
+	git checkout gh-pages
+	\cp -rf out/* .
+	git diff origin/gh-pages
+	@read -p "push? [y/n]" yn; \
+		case $$yn in \
+			[Yy]* ) git add .; git commit -m '$(shell date +%FT%T%Z) update'; git push;; \
+			[Nn]* ) exit;; \
+			* ) echo "Please answer yes or no.";; \
+		esac
+
+.PHONY: test lint dev build watch publish install push-doc
