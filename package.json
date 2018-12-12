@@ -49,7 +49,8 @@
   },
   "peerDependencies": {
     "ioredis": "^4.3.0",
-    "lru-cache": "^5.1.1"
+    "lru-cache": "^5.1.1",
+    "memory-cache": "^0.2.0"
   },
   "commitlint": {
     "extends": [
@@ -67,8 +68,5 @@
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "dependencies": {
-    "memory-cache": "^0.2.0"
   }
 }
