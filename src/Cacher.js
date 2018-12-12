@@ -3,7 +3,7 @@ import assert from 'assert'
 export default class Cacher {
   constructor (caches) {
     this.cache = caches.reverse().reduce((cache, cacheOptions) => {
-      assert(cacheOptions.type, `cache.type should exists`)
+      assert(cacheOptions.type, 'cache.type should exists')
       const Cache = Cacher.Caches[cacheOptions.type]
       assert(Cache, `Cache[${cacheOptions.type}] should exists`)
       return new Cache({
