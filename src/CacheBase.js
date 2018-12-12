@@ -1,10 +1,58 @@
-export default class CacheBase {
+/* eslint valid-jsdoc: "error" */
+
+/**
+ * CacheBase
+ */
+class CacheBase {
+  /**
+   * constructor
+   *
+   * @param {object} options={}
+   * @param {string} options.prefix=CacheBase cache prefix
+   * @param {CacheBase} options.parent parent cache
+   * @param {number} options.expire=60000 cahce expire
+   */
   constructor (options = {}) {
     this.prefix = options.prefix || 'CacheBase'
     this.parent = options.parent
     this.expire = options.expire || 60000
   }
 
+  /**
+   * load data from cache
+   *
+   * @function
+   * @name CacheBase#loadFromCache
+   * @param {string} fullKey
+   * @returns {Promise}
+   */
+
+  /**
+   * save data to cache
+   *
+   * @function
+   * @name CacheBase#saveToCache
+   * @param {string} fullKey
+   * @param {object} data
+   * @param {number} expire
+   * @returns {Promise}
+   */
+
+  /**
+   * clear cache data by key
+   *
+   * @function
+   * @name CacheBase#clear
+   * @param {string} key
+   * @returns {Promise}
+   */
+
+  /**
+   * build full key
+   *
+   * @param {string} key cache key
+   * @returns {string} full cache key
+   */
   buildKey (key) {
     return `${this.prefix}:${key}`
   }
@@ -28,11 +76,29 @@ export default class CacheBase {
     return ret
   }
 
-  async getAndSave (key, fn, ...expires) {
-    return this.doGet(true, key, fn, expires)
+  /**
+   * get data and refresh cache
+   *
+   * @param {string} key cache key
+   * @param {function} loadFunc load data function
+   * @param {...number} ...expires caches's expire
+   * @returns {Promise} data
+   */
+  async getAndSave (key, loadFunc, ...expires) {
+    return this.doGet(true, key, loadFunc, expires)
   }
 
-  async get (key, fn, ...expires) {
-    return this.doGet(false, key, fn, expires)
+  /**
+   * get data
+   *
+   * @param {string} key cache key
+   * @param {function} loadFunc load data func
+   * @param {...number} ...expires caches's expire
+   * @returns {Promise} data
+   */
+  async get (key, loadFunc, ...expires) {
+    return this.doGet(false, key, loadFunc, expires)
   }
 }
+
+export default CacheBase
