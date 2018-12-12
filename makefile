@@ -35,9 +35,10 @@ push-doc:
 	git diff origin/gh-pages
 	@read -p "push? [y/n]" yn; \
 		case $$yn in \
-			[Yy]* ) git add .; git commit -m '$(shell date +%FT%T%Z) update'; git push;; \
+			[Yy]* ) git add .; git commit -m 'docs: $(shell date +%FT%T%Z) update'; git push;; \
 			[Nn]* ) exit;; \
 			* ) echo "Please answer yes or no.";; \
 		esac
+	git checkout master
 
 .PHONY: test lint dev build watch publish install push-doc
