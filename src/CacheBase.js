@@ -5,8 +5,6 @@
  */
 class CacheBase {
   /**
-   * constructor
-   *
    * @param {object} options={}
    * @param {string} options.prefix=CacheBase cache prefix
    * @param {CacheBase} options.parent parent cache
@@ -20,30 +18,33 @@ class CacheBase {
 
   /**
    * load data from cache
+   * @abstract
    *
    * @function
    * @name CacheBase#loadFromCache
-   * @param {string} fullKey
-   * @returns {Promise}
+   * @param {string} fullKey  cache full key
+   * @returns {Promise} cache data
    */
 
   /**
    * save data to cache
+   * @abstract
    *
    * @function
    * @name CacheBase#saveToCache
-   * @param {string} fullKey
-   * @param {object} data
+   * @param {string} fullKey  cache full key
+   * @param {object} data data to save
    * @param {number} expire
    * @returns {Promise}
    */
 
   /**
    * clear cache data by key
+   * @abstract
    *
    * @function
    * @name CacheBase#clear
-   * @param {string} key
+   * @param {string} key cache key
    * @returns {Promise}
    */
 
