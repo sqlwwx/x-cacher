@@ -10,6 +10,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sqlwwx <wwx_2012@live.com> (http://wiki.lab.wuweixing.com)",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sqlwwx/x-cacher/issues"
