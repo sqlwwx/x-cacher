@@ -58,7 +58,7 @@ describe('Cacher', () => {
     const fullKey0 = cacher.cache.buildKey(key)
     const fullKey1 = cacher.cache.parent.buildKey(key)
     const fullKey2 = cacher.cache.parent.parent.buildKey(key)
-    expect(fullKey0).toEqual('CacheBase:key3')
+    expect(fullKey0).toEqual('key3')
     expect(fullKey1).toEqual('level2cache:key3')
     expect(fullKey2).toEqual('level3cache:key3')
     expect(await cacher.get(key)).toEqual(null)

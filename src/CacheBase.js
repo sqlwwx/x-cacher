@@ -11,7 +11,7 @@ class CacheBase {
    * @param {number} options.expire=60000 cahce expire
    */
   constructor (options = {}) {
-    this.prefix = options.prefix || 'CacheBase'
+    this.prefix = options.prefix
     this.parent = options.parent
     this.expire = options.expire || 60000
   }
@@ -55,7 +55,10 @@ class CacheBase {
    * @returns {string} full cache key
    */
   buildKey (key) {
-    return `${this.prefix}:${key}`
+    if (this.prefix) {
+      return `${this.prefix}:${key}`
+    }
+    return `${key}`
   }
 
   async doGet (alwaysSave, key, fn, expires) {

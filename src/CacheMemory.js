@@ -14,7 +14,7 @@ class CacheMemory extends CacheBase {
    * @param {CacheBase} options.parent parent cache
    * @param {number} options.expire=60000 cahce expire
    */
-  constructor (options = { prefix: 'CacheMemory' }) {
+  constructor (options = {}) {
     super(options)
     this.client = new Cache()
   }

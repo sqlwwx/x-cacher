@@ -19,7 +19,7 @@ describe('Cache', () => {
       const cacheBase0 = new CacheBase({ prefix: 'test' })
       const cacheBase1 = new CacheBase()
       expect(cacheBase0.buildKey('key')).toEqual('test:key')
-      expect(cacheBase1.buildKey('key')).toEqual('CacheBase:key')
+      expect(cacheBase1.buildKey('key')).toEqual('key')
     })
   })
   Object.entries(caches).forEach(([name, cache]) => {
