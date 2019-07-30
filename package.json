@@ -44,7 +44,7 @@
     "lint-staged": "^9.0.0",
     "pure-func": "^2",
     "regenerator-runtime": "^0.13.2",
-    "standard-version": "^5.0.0"
+    "standard-version": "^7.0.0"
   },
   "peerDependencies": {
     "ioredis": "^4.9.0",
