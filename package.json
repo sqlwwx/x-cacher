@@ -41,7 +41,7 @@
     "husky": "^2.0.0",
     "jest": "^24.7.1",
     "jsdoc": "^3.5.5",
-    "lint-staged": "^9.0.0",
+    "lint-staged": "^10.0.3",
     "pure-func": "^2",
     "regenerator-runtime": "^0.13.2",
     "standard-version": "^5.0.0"
